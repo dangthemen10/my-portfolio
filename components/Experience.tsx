@@ -11,17 +11,18 @@ import SectionHeading from './SectionHeading';
 import 'react-vertical-timeline-component/style.min.css';
 import { convert } from 'html-to-text';
 
-export default function Experience() {
+const Experience = (): React.JSX.Element => {
   const { ref } = useSectionInView('Experience', 0.5);
   const { theme } = useTheme();
 
   return (
     <section id="experience" ref={ref} className="scroll-mt-28 mb-28 sm:mb-40">
       <SectionHeading>My experience</SectionHeading>
-      <VerticalTimeline lineColor="">
-        {experiencesData.map((item: any, index) => (
+      <VerticalTimeline lineColor="" animate={true}>
+        {experiencesData.map((item: any, index: number) => (
           <VerticalTimelineElement
             key={index}
+            visible={true}
             contentStyle={{
               background:
                 theme === 'light' ? '#f3f4f6' : 'rgba(255, 255, 255, 0.05)',
@@ -53,4 +54,6 @@ export default function Experience() {
       </VerticalTimeline>
     </section>
   );
-}
+};
+
+export default Experience;
