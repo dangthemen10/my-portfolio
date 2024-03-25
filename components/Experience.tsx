@@ -12,7 +12,7 @@ import 'react-vertical-timeline-component/style.min.css';
 import { convert } from 'html-to-text';
 
 const Experience = (): React.JSX.Element => {
-  const { ref } = useSectionInView('Experience', 0.5);
+  const { ref } = useSectionInView('Experience', 0.2);
   const { theme } = useTheme();
 
   return (
@@ -49,6 +49,15 @@ const Experience = (): React.JSX.Element => {
             <p className="!mt-1 !font-normal text-gray-700 dark:text-white/75">
               {convert(item.description)}
             </p>
+            <ul className="flex flex-wrap mt-3 mb-3 gap-2">
+              {item.skills.map((skill: string, index: number) => (
+                <li
+                  key={index}
+                  className="bg-green-400/[0.7] px-3 py-1 text-[0.7rem] uppercase tracking-wider text-white rounded-full dark:bg-cyan-400/[0.7] dark:text-white/70">
+                  {skill}
+                </li>
+              ))}
+            </ul>
           </VerticalTimelineElement>
         ))}
       </VerticalTimeline>

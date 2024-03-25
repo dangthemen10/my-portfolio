@@ -24,3 +24,13 @@ export const getErrorMessage = (error: unknown): string => {
 
   return message;
 };
+
+/**
+ * Calculates the number of years from a starting year to the current year.
+ * @param {number} startYear - The starting year.
+ * @returns {number} - The number of years from the starting year to the current year.
+ */
+export const calculateYearsSince = (startYear: number): number => {
+  const currentDate = new Date().getFullYear();
+  return currentDate - startYear;
+}

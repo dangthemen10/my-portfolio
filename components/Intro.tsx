@@ -9,6 +9,8 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useActiveSectionContext } from '@/context/active-section-context';
 import { useSectionInView } from '@/lib/hooks';
+import { calculateYearsSince } from '@/lib/utils';
+import { START_YEAR_EXPERIENCE } from '@/lib/constants';
 
 export default function Intro() {
   const { ref } = useSectionInView('Home', 0.5);
@@ -57,8 +59,8 @@ export default function Intro() {
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}>
             <span className="font-bold">
-              Hello, I'm Dang. I'm a Software Engineer with 3 years of
-              experience.
+              Hello, I'm Dang. I'm a Software Engineer with{' '}
+              {calculateYearsSince(START_YEAR_EXPERIENCE)} years of experience.
             </span>
           </motion.h1>
         </div>
