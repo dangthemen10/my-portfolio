@@ -7,15 +7,16 @@ import ActiveSectionContextProvider from '@/context/active-section-context';
 import ThemeContextProvider from '@/context/theme-context';
 import { calculateYearsSince } from '@/lib/utils';
 import { START_YEAR_EXPERIENCE } from '@/lib/constants';
-import './globals.css';
-import RandomBackgroundColor from '@/components/RandomBackgroundColor';
 import BackToTop from '@/components/BackToTop';
+import Cursor from '@/components/Cursor';
+import './globals.css';
+import ParticlesLayout from '@/components/ParticlesLayout';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'Phan Hai Dang | Personal Portfolio',
-  description: `I'am a full-stack developer with ${calculateYearsSince(
+  description: `I'm a full-stack developer with ${calculateYearsSince(
     START_YEAR_EXPERIENCE
   )} years of experience.`,
 };
@@ -33,13 +34,15 @@ export default function RootLayout({
         <div className="bg-[#dbd7fb] absolute top-[-1rem] -z-10 left-[-35rem] h-[31.25rem] w-[50rem] rounded-full blur-[10rem] sm:w-[68.75rem] md:left-[-33rem] lg:left-[-28rem] xl:left-[-15rem] 2xl:left-[-5rem] dark:bg-[#676394]"></div>
         <ThemeContextProvider>
           <ActiveSectionContextProvider>
-            <Header />
-            {children}
-            <Footer />
-            <Toaster position="top-right" />
-            <BackToTop />
-            <ThemeSwitch />
-            <RandomBackgroundColor />
+            <ParticlesLayout>
+              <Cursor />
+              <Header />
+              {children}
+              <Footer />
+              <Toaster position="top-right" />
+              <BackToTop />
+              <ThemeSwitch />
+            </ParticlesLayout>
           </ActiveSectionContextProvider>
         </ThemeContextProvider>
       </body>

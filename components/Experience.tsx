@@ -53,7 +53,7 @@ const Experience = (): React.JSX.Element => {
               {item.skills.map((skill: string, index: number) => (
                 <li
                   key={index}
-                  className="bg-green-400/[0.7] px-3 py-1 text-[0.7rem] uppercase tracking-wider text-white rounded-full dark:bg-cyan-400/[0.7] dark:text-white/70">
+                  className="bg-cyan-400/[0.7] px-3 py-1 text-[0.7rem] uppercase tracking-wider text-white rounded-full dark:bg-cyan-400/[0.7] dark:text-white/70">
                   {skill}
                 </li>
               ))}
