@@ -1,47 +1,56 @@
 'use client';
 
 import { useTheme } from '@/context/theme-context';
-import { useSectionInView } from '@/lib/hooks';
-import { motion } from 'framer-motion';
+import './SectionDivider.css';
+import { useEffect, useState } from 'react';
 
-const textVariants = {
-  initial: {
-    x: -500,
-    opacity: 0,
-  },
-  animate: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      duration: 1,
-      staggerChildren: 0.1,
-    },
-  },
-  scrollButton: {
-    opacity: 0,
-    y: 10,
-    transition: {
-      duration: 2,
-      repeat: Infinity,
-    },
-  },
+const SectionDivider = (): React.JSX.Element => {
+  const { theme } = useTheme();
+  const [shouldRender, setShouldRender] = useState(false);
+
+  useEffect(() => {
+    const chevronBackgroundColor = theme === 'dark' ? '#ffffff' : '#000000';
+    document.documentElement.style.setProperty(
+      '--chevron-background-color',
+      chevronBackgroundColor
+    );
+
+    const timeoutId = setTimeout(() => {
+      setShouldRender(true);
+    }, 1000);
+
+    return () => clearTimeout(timeoutId);
+  }, [theme]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const distanceFromTop = window.scrollY;
+      if (distanceFromTop >= 600) {
+        setShouldRender(false);
+      } else {
+        setShouldRender(true);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  });
+
+  return (
+    <div className="my-24 h-16 w-16 hidden sm:block dark:bg-opacity-20">
+      {shouldRender && (
+        <>
+          <div className="chevron"></div>
+          <div className="chevron"></div>
+          <div className="chevron"></div>
+          <div className="chevron"></div>
+        </>
+      )}
+    </div>
+  );
 };
 
-export default function SectionDivider() {
-  const { theme } = useTheme();
-  return (
-    <motion.img
-      src={
-        theme === 'light'
-          ? 'https://www.svgrepo.com/show/522650/scroll-down.svg'
-          : 'https://framer-motion-portfolio-next.vercel.app/assets/scroll.png'
-      }
-      alt="scroll"
-      variants={textVariants}
-      animate="scrollButton"
-      width={48}
-      height={48}
-      className="my-24 h-16 w-16 hidden sm:block dark:bg-opacity-20"
-    />
-  );
-}
+export default SectionDivider;

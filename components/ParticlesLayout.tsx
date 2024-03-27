@@ -6,11 +6,7 @@ import { type Container, type ISourceOptions } from '@tsparticles/engine';
 import { loadFull } from 'tsparticles';
 import { useTheme } from '@/context/theme-context';
 
-const ParticlesLayout = ({
-  children,
-}: {
-  children: React.ReactNode;
-}): React.JSX.Element => {
+const ParticlesLayout = (): React.JSX.Element => {
   const [init, setInit] = useState(false);
   const { theme } = useTheme();
 
@@ -33,23 +29,27 @@ const ParticlesLayout = ({
         events: {
           onClick: {
             enable: true,
-            mode: 'push',
+            mode: 'bubble',
           },
           onHover: {
             enable: true,
-            mode: 'repulse',
+            mode: ['grab', 'bubble'],
           },
           resize: {
             enable: true,
           },
         },
         modes: {
-          push: {
-            quantity: 4,
-          },
-          repulse: {
-            distance: 200,
+          bubble: {
+            distance: 100,
+            size: 20,
             duration: 0.4,
+          },
+          grab: {
+            distance: 100,
+            links: {
+              opacity: 1,
+            },
           },
         },
       },
@@ -86,6 +86,13 @@ const ParticlesLayout = ({
         },
         opacity: {
           value: 0.5,
+          random: false,
+          anim: {
+            enable: false,
+            speed: 1,
+            opacity_min: 0.1,
+            sync: false,
+          },
         },
         shape: {
           type: 'circle',
@@ -101,18 +108,15 @@ const ParticlesLayout = ({
 
   if (init) {
     return (
-      <>
-        <Particles
-          id="tsparticles"
-          particlesLoaded={particlesLoaded}
-          options={options}
-        />
-        {children}
-      </>
+      <Particles
+        id="tsparticles"
+        particlesLoaded={particlesLoaded}
+        options={options}
+      />
     );
   }
 
-  return <>{children}</>;
+  return <></>;
 };
 
 export default ParticlesLayout;
