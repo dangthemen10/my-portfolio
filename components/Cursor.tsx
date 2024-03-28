@@ -11,7 +11,7 @@ const Cursor = (): React.JSX.Element => {
       <AnimatedCursor
         innerSize={20}
         outerSize={35}
-        color={theme === 'light' ? ' 49, 195, 231' : '255, 255 ,255'}
+        color={theme === 'light' ? '49, 195, 231' : '255, 255 ,255'}
         outerAlpha={0.4}
         innerScale={0.7}
         outerScale={3}
