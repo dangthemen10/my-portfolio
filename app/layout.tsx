@@ -11,23 +11,23 @@ import BackToTop from '@/components/BackToTop';
 import Cursor from '@/components/Cursor';
 import './globals.css';
 import ParticlesLayout from '@/components/ParticlesLayout';
-import { cookies } from 'next/headers';
+import { Metadata } from 'next';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Phan Hai Dang | Personal Portfolio',
   description: `I'm a full-stack developer with ${calculateYearsSince(
     START_YEAR_EXPERIENCE
   )} years of experience.`,
+  icons: {
+    icon: [
+      'https://media.licdn.com/dms/image/C4E03AQEMKAzi2ibEuQ/profile-displayphoto-shrink_400_400/0/1650113169826?e=1717027200&v=beta&t=GTkR9-JFLVFLNwqMfCLiqT1Md8LSEXpIQlwmJiQylag',
+    ],
+  },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const currentDevice = cookies().get('X-User-Device');
+const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en" className="!scroll-smooth">
       <body
@@ -37,7 +37,7 @@ export default function RootLayout({
         <ThemeContextProvider>
           <ActiveSectionContextProvider>
             <Header />
-            {currentDevice?.value === 'desktop' && <Cursor />}
+            <Cursor />
             {children}
             <Footer />
             <Toaster position="top-right" />
@@ -49,4 +49,6 @@ export default function RootLayout({
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

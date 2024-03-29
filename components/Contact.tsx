@@ -5,10 +5,29 @@ import { motion } from 'framer-motion';
 import { sendEmail } from '@/actions/sendEmail';
 import { useSectionInView } from '@/lib/hooks';
 import SectionHeading from './SectionHeading';
-import SubmitBtn from './SubmitBtn';
+import SubmitBtn from './SubmitButton';
+import { useState } from 'react';
 
 export default function Contact() {
   const { ref } = useSectionInView('Contact');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [sending, setSending] = useState(false);
+
+  const handleSendEmail = async (formData: FormData) => {
+    setSending(true);
+
+    const { error } = await sendEmail(formData);
+    if (error) {
+      toast.error(error);
+      return;
+    }
+
+    setSending(false);
+    toast.success('Email sent successfully!');
+    setEmail('');
+    setMessage('');
+  };
 
   return (
     <motion.section
@@ -39,16 +58,7 @@ export default function Contact() {
 
       <form
         className="mt-10 flex flex-col dark:text-black"
-        action={async (formData) => {
-          const { data, error } = await sendEmail(formData);
-
-          if (error) {
-            toast.error(error);
-            return;
-          }
-
-          toast.success('Email sent successfully!');
-        }}>
+        action={handleSendEmail}>
         <input
           className="h-14 px-4 rounded-lg borderBlack dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
           name="senderEmail"
@@ -56,13 +66,19 @@ export default function Contact() {
           required
           maxLength={500}
           placeholder="Your email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          disabled={sending}
         />
         <textarea
           className="h-52 my-3 rounded-lg borderBlack p-4 dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
           name="message"
           placeholder="Your message"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
           required
           maxLength={5000}
+          disabled={sending}
         />
         <SubmitBtn />
       </form>

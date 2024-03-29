@@ -12,7 +12,7 @@ import { useSectionInView } from '@/lib/hooks';
 import { calculateYearsSince } from '@/lib/utils';
 import { START_YEAR_EXPERIENCE } from '@/lib/constants';
 
-export default function Intro() {
+const Intro = (): React.JSX.Element => {
   const { ref } = useSectionInView('Home', 0.5);
   const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
 
@@ -22,7 +22,7 @@ export default function Intro() {
       id="home"
       className="mb-28 max-w-[50rem] text-center sm:mb-0 scroll-mt-[100rem]">
       <div className="flex items-center justify-center">
-        <div className="relative flex items-center">
+        <div className="relative flex items-center pl-12 pl-12 ml-4">
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -31,13 +31,13 @@ export default function Intro() {
               duration: 0.2,
             }}>
             <Image
-              src="https://scontent.fsgn5-5.fna.fbcdn.net/v/t1.6435-1/140868555_2967150116862435_4884880346437793377_n.jpg?stp=dst-jpg_p320x320&_nc_cat=108&ccb=1-7&_nc_sid=5f2048&_nc_ohc=VraVt3hbR6IAX_AT8mm&_nc_ht=scontent.fsgn5-5.fna&oh=00_AfDF1eE1wp2TxS7VgQ5PphJelT80NJ7dHlYAUalFys-tHw&oe=66263146"
+              src="https://media.licdn.com/dms/image/C4E03AQEMKAzi2ibEuQ/profile-displayphoto-shrink_400_400/0/1650113169826?e=1717027200&v=beta&t=GTkR9-JFLVFLNwqMfCLiqT1Md8LSEXpIQlwmJiQylag"
               alt="Phan Dang"
               width="192"
               height="192"
               quality="95"
               priority={true}
-              className="h-34 w-34 rounded-full object-cover border-[0.35rem] border-white shadow-xl"
+              className="relative h-34 w-34 rounded-full object-cover border-[0.35rem] border-white shadow-xl"
             />
           </motion.div>
           <motion.span
@@ -85,7 +85,7 @@ export default function Intro() {
         }}>
         <Link
           href="#contact"
-          className="group bg-gray-900 text-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 hover:bg-gray-950 active:scale-105 transition"
+          className="group bg-gray-900 text-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 hover:bg-gray-950 borderBlack active:scale-105 transition"
           onClick={() => {
             setActiveSection('Contact');
             setTimeOfLastClick(Date.now());
@@ -96,7 +96,7 @@ export default function Intro() {
 
         <a
           className="group bg-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10"
-          href="/CV.pdf"
+          href="https://drive.usercontent.google.com/u/0/uc?id=1BBO-920VjspawkVLkUMPDG_iZF4xnBRh&export=download"
           download>
           Download CV{' '}
           <HiDownload className="opacity-60 group-hover:translate-y-1 transition" />
@@ -120,4 +120,6 @@ export default function Intro() {
       </motion.div>
     </section>
   );
-}
+};
+
+export default Intro;

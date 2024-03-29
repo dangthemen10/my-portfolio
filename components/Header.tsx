@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { useActiveSectionContext } from '@/context/active-section-context';
 import { links } from '@/lib/data';
 
-export default function Header() {
+const Header = (): React.JSX.Element => {
   const { activeSection, setActiveSection, setTimeOfLastClick } =
     useActiveSectionContext();
 
@@ -57,4 +57,6 @@ export default function Header() {
       </nav>
     </header>
   );
-}
+};
+
+export default Header;
