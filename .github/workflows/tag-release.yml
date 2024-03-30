@@ -1,9 +1,8 @@
 name: Tag & GitHub release
 
 on:
-  pull_request_target:
-    branches:
-      - main
+  pull_request:
+    branches: [main]
     types: [closed]
 
 jobs:
