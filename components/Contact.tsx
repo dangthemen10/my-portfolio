@@ -8,7 +8,7 @@ import SectionHeading from './SectionHeading';
 import SubmitBtn from './SubmitButton';
 import { useState } from 'react';
 
-export default function Contact() {
+const Contact = (): React.JSX.Element => {
   const { ref } = useSectionInView('Contact');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -84,4 +84,6 @@ export default function Contact() {
       </form>
     </motion.section>
   );
-}
+};
+
+export default Contact;

@@ -21,7 +21,7 @@ const fadeInAnimationVariants = {
   }),
 };
 
-export default function Skills() {
+const Skills = (): React.JSX.Element => {
   const { ref } = useSectionInView('Skills');
 
   return (
@@ -55,4 +55,6 @@ export default function Skills() {
       </ul>
     </section>
   );
-}
+};
+
+export default Skills;

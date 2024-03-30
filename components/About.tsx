@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useSectionInView } from '@/lib/hooks';
 import SectionHeading from './SectionHeading';
 
-export default function About() {
+const About = (): React.JSX.Element => {
   const { ref } = useSectionInView('About');
 
   return (
@@ -50,4 +50,6 @@ export default function About() {
       </p>
     </motion.section>
   );
-}
+};
+
+export default About;

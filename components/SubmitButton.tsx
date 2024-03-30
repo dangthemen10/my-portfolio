@@ -2,7 +2,7 @@ import React from 'react';
 import { FaPaperPlane } from 'react-icons/fa';
 import { useFormStatus } from 'react-dom';
 
-export default function SubmitBtn() {
+const SubmitButton = (): React.JSX.Element => {
   const { pending } = useFormStatus();
 
   return (
@@ -20,4 +20,6 @@ export default function SubmitBtn() {
       )}
     </button>
   );
-}
+};
+
+export default SubmitButton;

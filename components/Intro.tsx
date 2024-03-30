@@ -25,7 +25,7 @@ const Intro = (): React.JSX.Element => {
         <div className="relative flex items-center pl-12 pl-12 ml-4">
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
+            animate={{ opacity: 1, x: -30, scale: 1.5 }}
             transition={{
               type: 'tween',
               duration: 0.2,
