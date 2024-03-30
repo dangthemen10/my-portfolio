@@ -12,6 +12,7 @@ import Cursor from '@/components/Cursor';
 import './globals.css';
 import ParticlesLayout from '@/components/ParticlesLayout';
 import { Metadata } from 'next';
+import EyeTracker from '@/components/EyeTracker';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -44,6 +45,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
             <BackToTop />
             <ThemeSwitch />
             <ParticlesLayout />
+            <EyeTracker />
           </ActiveSectionContextProvider>
         </ThemeContextProvider>
       </body>
