@@ -1,4 +1,4 @@
-name: Production Deployment
+name: Production deployment
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
@@ -36,7 +36,7 @@ jobs:
         with:
           submodules: 'true'
       - name: Install Vercel CLI
-        run: yarn install --global vercel@latest
+        run: npm install --global vercel@latest
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build Project Artifacts
