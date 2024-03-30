@@ -4,20 +4,20 @@ import { createContext, useContext, useEffect, useState } from 'react';
 
 type Theme = 'light' | 'dark';
 
-type ThemeContextProviderProps = {
+interface ThemeContextProviderProps {
   children: React.ReactNode;
-};
+}
 
-type ThemeContextType = {
+interface IThemeContext {
   theme: Theme;
   toggleTheme: () => void;
-};
+}
 
-const ThemeContext = createContext<ThemeContextType | null>(null);
+const ThemeContext = createContext<IThemeContext | null>(null);
 
-export default function ThemeContextProvider({
-  children
-}: ThemeContextProviderProps) {
+const ThemeContextProvider = ({
+  children,
+}: ThemeContextProviderProps): React.JSX.Element => {
   const [theme, setTheme] = useState<Theme>('light');
 
   const toggleTheme = () => {
@@ -51,15 +51,14 @@ export default function ThemeContextProvider({
     <ThemeContext.Provider
       value={{
         theme,
-        toggleTheme
-      }}
-    >
+        toggleTheme,
+      }}>
       {children}
     </ThemeContext.Provider>
   );
-}
+};
 
-export function useTheme() {
+export const useTheme = () => {
   const context = useContext(ThemeContext);
 
   if (context === null) {
@@ -67,4 +66,6 @@ export function useTheme() {
   }
 
   return context;
-}
+};
+
+export default ThemeContextProvider;

@@ -7,12 +7,7 @@ import { projectsData } from '@/lib/data';
 
 type ProjectProps = (typeof projectsData)[number];
 
-export default function Project({
-  title,
-  description,
-  tags,
-  imageUrl,
-}: ProjectProps) {
+const Project = ({ title, description, tags, imageUrl }: ProjectProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -67,4 +62,6 @@ export default function Project({
       </section>
     </motion.div>
   );
-}
+};
+
+export default Project;

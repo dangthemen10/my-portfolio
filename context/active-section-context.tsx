@@ -3,41 +3,17 @@
 import React, { createContext, useContext, useState } from 'react';
 import type { SectionName } from '@/lib/types';
 
-type ActiveSectionContextProviderProps = {
-  children: React.ReactNode;
-};
-
-type ActiveSectionContextType = {
+interface ActiveSectionContextType {
   activeSection: SectionName;
   setActiveSection: React.Dispatch<React.SetStateAction<SectionName>>;
   timeOfLastClick: number;
   setTimeOfLastClick: React.Dispatch<React.SetStateAction<number>>;
-};
-
-export const ActiveSectionContext =
-  createContext<ActiveSectionContextType | null>(null);
-
-export default function ActiveSectionContextProvider({
-  children
-}: ActiveSectionContextProviderProps) {
-  const [activeSection, setActiveSection] = useState<SectionName>('Home');
-  const [timeOfLastClick, setTimeOfLastClick] = useState(0); // we need to keep track of this to disable the observer temporarily when user clicks on a link
-
-  return (
-    <ActiveSectionContext.Provider
-      value={{
-        activeSection,
-        setActiveSection,
-        timeOfLastClick,
-        setTimeOfLastClick
-      }}
-    >
-      {children}
-    </ActiveSectionContext.Provider>
-  );
+}
+interface ActiveSectionContextProviderProps {
+  children: React.ReactNode;
 }
 
-export function useActiveSectionContext() {
+export const useActiveSectionContext = (): ActiveSectionContextType => {
   const context = useContext(ActiveSectionContext);
 
   if (context === null) {
@@ -47,4 +23,28 @@ export function useActiveSectionContext() {
   }
 
   return context;
-}
+};
+
+export const ActiveSectionContext =
+  createContext<ActiveSectionContextType | null>(null);
+
+const ActiveSectionContextProvider = ({
+  children,
+}: ActiveSectionContextProviderProps): React.JSX.Element => {
+  const [activeSection, setActiveSection] = useState<SectionName>('Home');
+  const [timeOfLastClick, setTimeOfLastClick] = useState(0); // we need to keep track of this to disable the observer temporarily when user clicks on a link
+
+  return (
+    <ActiveSectionContext.Provider
+      value={{
+        activeSection,
+        setActiveSection,
+        timeOfLastClick,
+        setTimeOfLastClick,
+      }}>
+      {children}
+    </ActiveSectionContext.Provider>
+  );
+};
+
+export default ActiveSectionContextProvider;

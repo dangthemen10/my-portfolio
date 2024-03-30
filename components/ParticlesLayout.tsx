@@ -33,7 +33,7 @@ const ParticlesLayout = (): React.JSX.Element => {
           },
           onHover: {
             enable: true,
-            mode: ['grab', 'bubble'],
+            mode: ['grab'],
           },
           resize: {
             enable: true,

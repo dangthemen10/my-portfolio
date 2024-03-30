@@ -6,7 +6,7 @@ import { useSectionInView } from '@/lib/hooks';
 import Project from './Project';
 import SectionHeading from './SectionHeading';
 
-export default function Projects() {
+const Projects = (): React.JSX.Element => {
   const { ref } = useSectionInView('Projects', 0.5);
 
   return (
@@ -21,4 +21,6 @@ export default function Projects() {
       </div>
     </section>
   );
-}
+};
+
+export default Projects;
